@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Barlow_Condensed, Barlow } from "next/font/google";
 import "./globals.css";
 import SplashScreen from "@/components/SplashScreen";
+import ScrollToTop from "@/components/layout/ScrollToTop";
 
 const barlowCondensed = Barlow_Condensed({
   subsets: ["latin"],
@@ -48,6 +49,7 @@ export default function RootLayout({
       <body className="antialiased overflow-x-hidden">
         <SplashScreen />
         {children}
+        <ScrollToTop />
       </body>
     </html>
   );
