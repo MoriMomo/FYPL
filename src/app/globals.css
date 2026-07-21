@@ -1,0 +1,93 @@
+/* Google Fonts MUST be first — @import rules must precede all other rules */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600;1,700;1,800;1,900&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&display=swap');
+
+@import "tailwindcss";
+
+/* ============================================
+   FYPL — Tailwind v4 CSS-first Design System
+   Brand: Navy #1E2B7B | Pink #E8185A | Cyan #45C8D8
+   Font: Barlow Condensed (Helvetica Neue Condensed alt)
+   ============================================ */
+
+@theme {
+  /* Brand Colors */
+  --color-navy:        #1E2B7B;
+  --color-navy-dark:   #151f5c;
+  --color-navy-light:  #2A3B9E;
+  --color-pink:        #E8185A;
+  --color-pink-dark:   #C41048;
+  --color-pink-light:  #F03A73;
+  --color-cyan:        #45C8D8;
+  --color-cyan-dark:   #2AABB8;
+  --color-cyan-light:  #7ADEE8;
+
+  /* Fonts */
+  --font-display: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+  --font-body:    'Barlow', Arial, sans-serif;
+
+  /* Nav height as a spacing token */
+  --spacing-nav: 72px;
+}
+
+/* Base styles */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: white;
+    background-color: var(--color-navy);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+
+  a { text-decoration: none; color: inherit; }
+  ul, ol { list-style: none; margin: 0; padding: 0; }
+  img, video { max-width: 100%; height: auto; display: block; }
+  button { font-family: var(--font-display); cursor: pointer; border: none; background: none; }
+  p { line-height: 1.65; }
+
+  ::selection {
+    background-color: var(--color-pink);
+    color: white;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-cyan);
+    outline-offset: 3px;
+  }
+}
+
+/* Custom utilities */
+@layer utilities {
+  .font-display { font-family: var(--font-display); }
+  .font-body    { font-family: var(--font-body); }
+
+  .text-gradient {
+    background: linear-gradient(135deg, var(--color-pink), var(--color-cyan));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .animate-float {
+    animation: floatY 5s ease-in-out infinite;
+  }
+
+  @keyframes floatY {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-14px); }
+  }
+}
