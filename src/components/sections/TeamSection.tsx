@@ -116,7 +116,6 @@ export default function TeamSection() {
     () => {
       if (!activeMember || !overlayRef.current || !cardRef.current) return;
 
-      gsap.set(overlayRef.current, { display: "flex" });
       gsap.fromTo(
         overlayRef.current,
         { opacity: 0 },
@@ -128,7 +127,7 @@ export default function TeamSection() {
         { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "power3.out" }
       );
     },
-    { dependencies: [activeMember], scope: overlayRef }
+    { dependencies: [activeMember], scope: sectionRef }
   );
 
   const closeOverlay = () => {
@@ -148,7 +147,9 @@ export default function TeamSection() {
       opacity: 0,
       duration: 0.25,
       ease: "power2.in",
-      onComplete: () => setActiveMember(null),
+      onComplete: () => {
+        setActiveMember(null);
+      },
     });
   };
 
@@ -217,16 +218,15 @@ export default function TeamSection() {
         ))}
       </div>
 
-      {/* Overlay */}
-      <div
-        ref={overlayRef}
-        className="fixed inset-0 z-[999] hidden items-center justify-center bg-black/70 backdrop-blur-sm px-6"
-        style={{ opacity: 0 }}
-        onClick={(e) => {
-          if (e.target === e.currentTarget) closeOverlay();
-        }}
-      >
-        {activeMember && (
+      {/* Overlay — rendered conditionally so it cannot block pointer events when closed */}
+      {activeMember && (
+        <div
+          ref={overlayRef}
+          className="fixed inset-0 z-[999] flex items-center justify-center bg-black/70 backdrop-blur-sm px-6"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) closeOverlay();
+          }}
+        >
           <div
             ref={cardRef}
             className="relative w-full max-w-[720px] bg-navy-dark overflow-hidden flex flex-col md:flex-row"
@@ -278,8 +278,8 @@ export default function TeamSection() {
               </p>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </section>
   );
 }
