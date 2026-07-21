@@ -105,15 +105,14 @@ export default function TimelineSection() {
       <div
         ref={trackRef}
         className="flex will-change-transform"
-        style={{ width: `${TIMELINE_ITEMS.length * 480}px` }}
       >
         {/* Header card — always visible as the anchor */}
-        <div className="flex-shrink-0 w-[380px] h-[calc(100vh-72px)] bg-navy-dark flex flex-col justify-end px-10 py-12 border-r border-white/10">
+        <div className="flex-shrink-0 w-[85vw] max-w-[320px] sm:w-[380px] h-[calc(100vh-72px)] bg-navy-dark flex flex-col justify-end px-6 sm:px-10 py-8 sm:py-12 border-r border-white/10">
           <p className="font-display text-xs font-semibold uppercase tracking-[0.25em] text-cyan mb-4">
             BINUS University · FYPL B2030
           </p>
           <h2 className="font-display font-black uppercase leading-none text-white tracking-tight mb-4"
-            style={{ fontSize: "clamp(3rem, 5vw, 5rem)" }}
+            style={{ fontSize: "clamp(2.5rem, 5vw, 5rem)" }}
           >
             FYP<br />
             <span className="text-cyan italic">TIME</span><br />
@@ -135,7 +134,7 @@ export default function TimelineSection() {
         {TIMELINE_ITEMS.map((item, index) => (
           <article
             key={item.id}
-            className={`${item.color} flex-shrink-0 w-[480px] h-[calc(100vh-72px)] flex flex-col justify-between px-10 py-12 border-r border-white/10 relative overflow-hidden`}
+            className={`${item.color} flex-shrink-0 w-[85vw] max-w-[420px] sm:w-[480px] h-[calc(100vh-72px)] flex flex-col justify-between px-6 sm:px-10 py-8 sm:py-12 border-r border-white/10 relative overflow-hidden`}
           >
             {/* Stage index indicator top-right */}
             <div className="flex justify-between items-start">

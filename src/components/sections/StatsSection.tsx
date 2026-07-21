@@ -51,19 +51,26 @@ export default function StatsSection() {
   );
 
   return (
-    <section ref={containerRef} className="bg-navy-dark py-20" aria-label="Statistics">
-      <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10 border border-white/10 max-w-[1200px] mx-auto">
-        {STATS.map((stat) => (
-          <div key={stat.id} className="flex flex-col items-center justify-center py-10 px-6 text-center gap-2">
+    <section ref={containerRef} className="bg-navy-dark py-12 md:py-20 px-6" aria-label="Statistics">
+      <div className="grid grid-cols-2 md:grid-cols-4 border border-white/10 max-w-[1200px] mx-auto">
+        {STATS.map((stat, idx) => (
+          <div
+            key={stat.id}
+            className={`flex flex-col items-center justify-center py-8 md:py-10 px-4 md:px-6 text-center gap-2 border-white/10 ${
+              idx % 2 === 0 ? "border-r" : ""
+            } ${idx < 2 ? "border-b md:border-b-0" : ""} ${
+              idx === 1 ? "md:border-r" : ""
+            } ${idx === 2 ? "md:border-r" : ""}`}
+          >
             <span
               className="stat-value font-display font-black text-cyan leading-none"
               data-target={stat.target}
               data-suffix={stat.suffix}
-              style={{ fontSize: "clamp(2.5rem, 4vw, 4rem)" }}
+              style={{ fontSize: "clamp(2rem, 5vw, 4rem)" }}
             >
               0{stat.suffix}
             </span>
-            <span className="font-display font-semibold uppercase tracking-widest text-white/60 text-sm">
+            <span className="font-display font-semibold uppercase tracking-widest text-white/60 text-xs sm:text-sm">
               {stat.label}
             </span>
           </div>

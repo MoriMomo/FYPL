@@ -190,7 +190,7 @@ export default function TeamSection() {
       </div>
 
       {/* 3-column photo grid */}
-      <div className="team-grid max-w-[1200px] mx-auto px-6 md:px-10 grid grid-cols-2 md:grid-cols-3 gap-4">
+      <div className="team-grid max-w-[1200px] mx-auto px-6 md:px-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {TEAM_MEMBERS.map((member) => (
           <button
             key={member.id}
@@ -205,7 +205,7 @@ export default function TeamSection() {
               alt={member.name}
               fill
               className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out pointer-events-none"
-              sizes="(max-width: 768px) 50vw, 33vw"
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
               draggable={false}
             />
             {/* Hover affordance hint */}
@@ -222,14 +222,14 @@ export default function TeamSection() {
       {activeMember && (
         <div
           ref={overlayRef}
-          className="fixed inset-0 z-[999] flex items-center justify-center bg-black/70 backdrop-blur-sm px-6"
+          className="fixed inset-0 z-[999] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 sm:p-6"
           onClick={(e) => {
             if (e.target === e.currentTarget) closeOverlay();
           }}
         >
           <div
             ref={cardRef}
-            className="relative w-full max-w-[720px] bg-navy-dark overflow-hidden flex flex-col md:flex-row"
+            className="relative w-full max-w-[720px] max-h-[90vh] overflow-y-auto bg-navy-dark border border-white/10 flex flex-col md:flex-row"
           >
             {/* Close button */}
             <button
