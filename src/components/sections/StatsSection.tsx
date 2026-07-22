@@ -13,9 +13,8 @@ interface StatItem {
 
 const STATS: StatItem[] = [
   { id: "freshman", target: 2000, suffix: "+", label: "New Freshman" },
-  { id: "organizations", target: 20, suffix: "", label: "Organizations to Join" },
-  { id: "mentors", target: 400, suffix: "", label: "Mentors to Help" },
-  { id: "program", target: 7, suffix: " Days", label: "Program" },
+  { id: "organizations", target: 50, suffix: "+", label: "Organizations to Join" },
+  { id: "mentors", target: 400, suffix: "+", label: "Mentors to Help" },
 ];
 
 export default function StatsSection() {
@@ -52,15 +51,13 @@ export default function StatsSection() {
 
   return (
     <section ref={containerRef} className="bg-navy-dark py-12 md:py-20 px-6" aria-label="Statistics">
-      <div className="grid grid-cols-2 md:grid-cols-4 border border-white/10 max-w-[1200px] mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-3 border border-white/10 max-w-[1200px] mx-auto">
         {STATS.map((stat, idx) => (
           <div
             key={stat.id}
             className={`flex flex-col items-center justify-center py-8 md:py-10 px-4 md:px-6 text-center gap-2 border-white/10 ${
-              idx % 2 === 0 ? "border-r" : ""
-            } ${idx < 2 ? "border-b md:border-b-0" : ""} ${
-              idx === 1 ? "md:border-r" : ""
-            } ${idx === 2 ? "md:border-r" : ""}`}
+              idx < 2 ? "border-b sm:border-b-0 sm:border-r" : ""
+            }`}
           >
             <span
               className="stat-value font-display font-black text-cyan leading-none"

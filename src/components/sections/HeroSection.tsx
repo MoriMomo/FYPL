@@ -130,7 +130,7 @@ export default function HeroSection() {
               href="#about"
               className="inline-flex items-center justify-center px-8 py-3 border-2 border-cyan bg-cyan text-navy font-display font-bold uppercase tracking-widest text-lg hover:bg-transparent hover:text-cyan transition-colors duration-250 w-fit"
             >
-              LET&apos;S GO
+              ABOUT USS
             </Link>
             <Link
               href="#faq"

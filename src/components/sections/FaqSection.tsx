@@ -10,77 +10,132 @@ interface FaqItem {
   answer: string;
 }
 
-const FAQ_ITEMS: FaqItem[] = [
-  {
-    id: "faq-1",
-    question: "Apa itu First Year Program (FYP) di Binus University?",
-    answer:
-      "First Year Program (FYP) adalah rangkaian program pendampingan dan pengembangan bagi mahasiswa baru Binus University untuk beradaptasi dengan kehidupan perkuliahan, membangun soft skills, dan mempersiapkan diri menghadapi tantangan akademis maupun non-akademis.",
-  },
-  {
-    id: "faq-2",
-    question: "Siapa saja yang wajib mengikuti FYP?",
-    answer:
-      "Seluruh mahasiswa baru Binus University angkatan B2030 (khususnya @Kemanggisan) wajib mengikuti seluruh tahapan FYP sebagai syarat utama orientasi dan pembentukan karakter BINUSIAN.",
-  },
-  {
-    id: "faq-3",
-    question: "Bagaimana struktur kegiatan FYP berlangsung?",
-    answer:
-      "FYP terbagi menjadi beberapa tahapan utama mulai dari Kickoff, penyusunan Proposal & Ideasi, Development proyek, Testing & Evaluasi, Revisi mandiri, hingga Presentasi Final di hadapan juri & dosen pembimbing.",
-  },
-  {
-    id: "faq-4",
-    question: "Bagaimana cara mendapatkan bantuan atau bimbingan selama FYP?",
-    answer:
-      "Mahasiswa akan didampingi oleh Freshmen Leader (FL) dan Freshmen Partner (FP) serta Dosen Pembimbing yang siap memberikan arahan, konsultasi, dan motivasi sepanjang program.",
-  },
-  {
-    id: "faq-5",
-    question: "Apakah ada penilaian akhir dalam FYP?",
-    answer:
-      "Ya, keaktifan, kehadiran, serta hasil akhir proyek kelompok akan dievaluasi dan menjadi bagian dari rekam jejak perkembangan mahasiswa baru di BINUS.",
-  },
-  {
-    id: "faq-6",
-    question: "Berapa lama durasi pelaksanaan FYP B2030?",
-    answer:
-      "Program FYP berlangsung selama kurun waktu semester awal dengan sesi intensif seperti NEXT, Academic Orientation, serta pendampingan berkala sepanjang tahun pertama perkuliahan.",
-  },
-  {
-    id: "faq-7",
-    question: "Apa konsekuensinya jika tidak menghadiri salah satu sesi FYP?",
-    answer:
-      "Kehadiran FYP sangat penting untuk pemenuhan kelulusan orientasi. Jika berhalangan hadir karena kendala mendesak atau sakit, mahasiswa wajib memberikan surat izin resmi ke Freshmen Leader (FL).",
-  },
-  {
-    id: "faq-8",
-    question: "Bagaimana ketentuan pakaian dan atribut selama sesi FYP berlangsung?",
-    answer:
-      "Mahasiswa wajib mengenakan kemeja putih polos berkerah, celana bahan warna hitam polos, sepatu tertutup, serta mengalungkan BINUSIAN Card Flazz selama berada di lingkungan kampus.",
-  },
-  {
-    id: "faq-9",
-    question: "Di mana lokasi pelaksanaan sesi FYP @Kemanggisan?",
-    answer:
-      "Sesi FYP dilaksanakan di lingkungan kampus BINUS @Kemanggisan (Kampus Anggrek, Syahdan, dan Kijang) sesuai dengan jadwal kelas dan informasi prodi masing-masing.",
-  },
-  {
-    id: "faq-10",
-    question: "Di mana mahasiswa dapat melihat jadwal dan pengumuman resmi FYP?",
-    answer:
-      "Seluruh jadwal sesi, materi pendukung, dan pengumuman resmi dapat dipantau langsung melalui portal BINUSMAYA, aplikasi mobile BINUS, atau Microsite FYP student.binus.ac.id/fyp.",
-  },
-];
+const FAQ_DATA: Record<"freshman" | "leader" | "partner", FaqItem[]> = {
+  freshman: [
+    {
+      id: "freshman-1",
+      question: "Bagaimana jika saya mengalami kendala saat melakukan absensi (WiFi Attendance atau Binusmaya)?",
+      answer:
+        "Jika Anda mengalami kesulitan login ke Binusmaya atau WiFi Attendance bermasalah (seperti halaman log in tidak muncul atau scan QR merah terutama di iOS), segera laporkan ke Freshmen Leader (FL) agar kehadiran Anda dicatat secara manual di sesi tersebut.",
+    },
+    {
+      id: "freshman-2",
+      question: "Bagaimana jika nama saya tidak terdata di absensi kelas atau jadwal di Binusmaya tidak sesuai?",
+      answer:
+        "Segera laporkan ke FL kelas Anda agar dapat dikoordinasikan dengan tim IT dan Admission. Beberapa freshmen mungkin mengalami keterlambatan sinkronisasi jadwal atau salah ruangan kelas (misal tertukar ABN/ruangan).",
+    },
+    {
+      id: "freshman-3",
+      question: "Apa yang harus saya lakukan jika belum mendapatkan Flazzcard, lanyard, atau almamater?",
+      answer:
+        "Jika Anda belum terdaftar, belum menerima Flazzcard (BINUSIAN Card), lanyard, atau almamater karena terlambat mendaftar atau kesalahan data logistik, harap lapor ke FL pendamping Anda agar dicatat di form kendala logistik dan dapat diproses susulan ke Admission.",
+    },
+    {
+      id: "freshman-4",
+      question: "Bagaimana jika ukuran almamater yang diterima tidak sesuai (kekecilan/kebesaran) atau terdapat kerusakan (seperti kancing lepas)?",
+      answer:
+        "Anda dapat mengajukan penukaran atau retur ukuran almamater melalui tim logistik Admission dengan mencatat kendala pada lembar retur melalui bantuan FL kelas Anda.",
+    },
+    {
+      id: "freshman-5",
+      question: "Mengapa jaringan internet (WiFi) di kelas lambat dan server AOB/Binusmaya lemot?",
+      answer:
+        "Pada hari-hari pertama FYP, lalu lintas server sangat padat. Jika komputer atau web AOB lemot, silakan laporkan ke FL. Jangan melakukan klik atau uncheck sembarangan di web AOB agar data ukuran almet/logistik Anda tidak terubah otomatis menjadi ukuran default (S).",
+    },
+  ],
+  leader: [
+    {
+      id: "leader-1",
+      question: "Bagaimana jika sistem absensi QR untuk FL error atau saya lupa melakukan scan?",
+      answer:
+        "Jika QR code absensi FL tidak muncul atau Anda terlewat melakukan scan karena mengurus mobilisasi freshmen ke atrium, segera hubungi koordinator FYPL untuk melakukan verifikasi dan input absensi manual.",
+    },
+    {
+      id: "leader-2",
+      question: "Apa yang harus dilakukan jika terjadi kekacauan/penumpukan saat pembagian Flazzcard dan almamater?",
+      answer:
+        "Pembagian tugas harus jelas: delegasikan minimal satu FL untuk mengontrol barisan, satu FL mencocokkan tanda tangan freshmen di lembar serah terima, dan satu FL mengambil logistik. Jika petugas pembagian kewalahan (misal hanya ada 1 staff logistik), FL/FYPL lainnya wajib berinisiatif membackup proses distribusi.",
+    },
+    {
+      id: "leader-3",
+      question: "Bagaimana mengantisipasi kesalahan tanda tangan freshmen pada lembar rekap logistik?",
+      answer:
+        "Pastikan nomor baris di tabel rekap sesuai dengan data freshmen. Dampingi freshmen secara langsung saat tanda tangan dan minta mereka membaca nama serta ukuran almet dengan teliti agar tidak menandatangani kolom milik orang lain.",
+    },
+    {
+      id: "leader-4",
+      question: "Bagaimana jika menu Logbook atau Session Log di Binusmaya tidak muncul atau tidak bisa diisi?",
+      answer:
+        "Jika menu Logbook bermasalah atau kosong (misal kendala tanggal kosong), kumpulkan poin-poin aktivitas mentoring kelas secara lokal terlebih dahulu. Lakukan pengisian susulan di sistem setelah tim IT menyelesaikan perbaikan server.",
+    },
+    {
+      id: "leader-5",
+      question: "Apa yang harus dilakukan jika kelas terasa sepi, freshmen pasif, bosan, atau sibuk bermain HP?",
+      answer:
+        "Persiapkan rundown cadangan dan game ice-breaking menarik untuk mengisi waktu kosong (misal ketika penjelasan materi selesai lebih cepat). FL dilarang berkumpul sendiri di depan kelas; berbaurlah dan ajak freshmen berinteraksi secara aktif.",
+    },
+    {
+      id: "leader-6",
+      question: "Bagaimana menyikapi info perubahan jadwal kelas atau penggabungan ABN yang mendadak dari FYPL?",
+      answer:
+        "Bila mendapat kabar penggabungan kelas secara mendadak, segera berkoordinasi dengan FL/FP kelas mitra untuk berbagi peran penyampaian materi (siapa PIC mic utama, siapa yang backup teknis). Hal ini mencegah miss-komunikasi atau berebutan menjelaskan materi di depan kelas.",
+    },
+    {
+      id: "leader-7",
+      question: "Bagaimana mendampingi freshmen dengan kebutuhan khusus atau disabilitas (tunarungu)?",
+      answer:
+        "Lakukan pendekatan personal yang empati, gunakan media visual atau komunikasi tertulis (kertas/notes) untuk menyampaikan materi orientasi, dan dampingi mereka secara intensif agar tetap dapat mengikuti rangkaian FYP dengan nyaman.",
+    },
+    {
+      id: "leader-8",
+      question: "Bagaimana jika terjadi miskomunikasi terkait rundown kegiatan yang kurang detail?",
+      answer:
+        "Diskusikan rundown secara detail saat briefing pagi bersama seluruh tim FL/FP. Jika briefing terlambat (ngaret) dan waktu mepet dengan jam masuk kelas, segera bagi tugas utama terlebih dahulu dan prioritaskan kesiapan kelas sebelum freshmen tiba.",
+    },
+    {
+      id: "leader-9",
+      question: "Apa tindakan pertama jika fasilitas fisik kelas bermasalah (AC panas atau speaker noise)?",
+      answer:
+        "Laporkan segera ke satpam gedung atau operational staff terdekat untuk penanganan AC dan kelistrikan. Jika mic/speaker kelas mati, gunakan saramonic/speaker portable cadangan atau maksimalkan proyeksi suara agar freshmen tetap mendengar materi dengan jelas.",
+    },
+    {
+      id: "leader-10",
+      question: "Bagaimana mengelola mobilisasi freshmen dalam jumlah besar (misal saat menuju Atrium atau pulang)?",
+      answer:
+        "Tentukan rute mobilisasi dengan matang. Satu FL/FP bertindak sebagai penunjuk jalan di depan (lead), sementara yang lain merapikan barisan di tengah dan belakang (sweep). Lakukan koordinasi waktu agar tidak bentrok dengan ABN lain di lorong/tangga.",
+    },
+  ],
+  partner: [
+    {
+      id: "partner-coming-soon",
+      question: "Kapan FAQ untuk Freshman Partner (FP) dirilis?",
+      answer:
+        "Coming Soon! Rangkaian tanya-jawab lengkap khusus untuk peran Freshman Partner sedang dalam proses penyusunan dan akan segera dirilis dalam waktu dekat. Tetap pantau microsite ini untuk pembaruan selanjutnya!",
+    },
+  ],
+};
+
+const TABS = [
+  { id: "freshman", label: "Freshman", activeClass: "bg-pink text-white shadow-pink/30" },
+  { id: "leader", label: "Freshman Leader", activeClass: "bg-cyan text-white shadow-cyan/30" },
+  { id: "partner", label: "Freshman Partner", activeClass: "bg-gradient-to-r from-pink to-cyan text-white shadow-pink/20" },
+] as const;
 
 export default function FaqSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [openId, setOpenId] = useState<string | null>("faq-1");
+  const [activeTab, setActiveTab] = useState<"freshman" | "leader" | "partner">("freshman");
+  const [openId, setOpenId] = useState<string | null>("freshman-1");
 
   const toggle = useCallback((id: string) => {
     setOpenId((prev) => (prev === id ? null : id));
   }, []);
 
+  const handleTabChange = useCallback((tab: "freshman" | "leader" | "partner") => {
+    setActiveTab(tab);
+    setOpenId(FAQ_DATA[tab][0]?.id || null);
+  }, []);
+
+  // Static elements entrance animation (runs once on scroll)
   useGSAP(
     () => {
       gsap.from(".faq-header", {
@@ -95,25 +150,44 @@ export default function FaqSection() {
         },
       });
 
+      gsap.from(".faq-tabs", {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        delay: 0.15,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+          toggleActions: "play none none reverse",
+        },
+      });
+    },
+    { scope: sectionRef }
+  );
+
+  // FAQ items stagger animation (runs on activeTab change and triggers on scroll)
+  useGSAP(
+    () => {
       gsap.fromTo(
         ".faq-item",
         { y: 30, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 0.6,
-          stagger: 0.08,
+          duration: 0.5,
+          stagger: 0.05,
           ease: "power2.out",
           clearProps: "all",
           scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 85%",
+            trigger: ".faq-list",
+            start: "top 90%",
             toggleActions: "play none none none",
           },
         }
       );
     },
-    { scope: sectionRef }
+    { dependencies: [activeTab], scope: sectionRef }
   );
 
   return (
@@ -140,9 +214,29 @@ export default function FaqSection() {
           </p>
         </div>
 
+        {/* Category Tabs */}
+        <div className="faq-tabs flex flex-col sm:flex-row justify-center gap-3 p-2 bg-navy/40 backdrop-blur-md rounded-2xl border border-white/10 max-w-[700px] mx-auto mb-12">
+          {TABS.map((tab) => {
+            const isActive = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => handleTabChange(tab.id)}
+                className={`flex-1 px-6 py-3.5 rounded-xl font-display font-bold uppercase text-xs md:text-sm tracking-widest transition-all duration-300 transform ${
+                  isActive
+                    ? `${tab.activeClass} shadow-[0_4px_20px_rgba(0,0,0,0.25)] scale-[1.03] text-white`
+                    : "text-white/60 border border-transparent hover:text-white hover:bg-white/5 hover:border-white/5"
+                }`}
+              >
+                {tab.label}
+              </button>
+            );
+          })}
+        </div>
+
         {/* FAQ Accordion List */}
         <div className="faq-list flex flex-col gap-4">
-          {FAQ_ITEMS.map((item) => {
+          {FAQ_DATA[activeTab].map((item) => {
             const isOpen = openId === item.id;
 
             return (
