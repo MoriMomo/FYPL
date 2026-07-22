@@ -46,9 +46,9 @@ const FAQ_DATA: Record<"freshman" | "leader" | "partner", FaqItem[]> = {
   leader: [
     {
       id: "leader-1",
-      question: "Bagaimana jika sistem absensi QR untuk FL error atau saya lupa melakukan scan?",
+      question: "Bagaimana jika sistem absensi QR untuk FL error, Binusmaya down, atau saya lupa melakukan scan?",
       answer:
-        "Jika QR code absensi FL tidak muncul atau Anda terlewat melakukan scan karena mengurus mobilisasi freshmen ke atrium, segera hubungi koordinator FYPL untuk melakukan verifikasi dan input absensi manual.",
+        "Jangan panik. Segera amankan bukti kehadiran dengan mengisi file monitoring. Setelah itu, segera hubungi koordinator FYPL pada hari yang sama untuk melaporkan kendala tersebut agar dapat diverifikasi. Jangan menunda laporan hingga esok hari agar status absensi tidak terkunci.",
     },
     {
       id: "leader-2",
@@ -64,9 +64,9 @@ const FAQ_DATA: Record<"freshman" | "leader" | "partner", FaqItem[]> = {
     },
     {
       id: "leader-4",
-      question: "Bagaimana jika menu Logbook atau Session Log di Binusmaya tidak muncul atau tidak bisa diisi?",
+      question: "Apa alternatifnya jika menu Logbook atau Session Log di Binusmaya tidak muncul, error, atau tanggalnya kosong?",
       answer:
-        "Jika menu Logbook bermasalah atau kosong (misal kendala tanggal kosong), kumpulkan poin-poin aktivitas mentoring kelas secara lokal terlebih dahulu. Lakukan pengisian susulan di sistem setelah tim IT menyelesaikan perbaikan server.",
+        "Segera alihkan pencatatan dengan melakukan pengisian File Monitoring secara berkala. Catat seluruh poin aktivitas kelas (tanggal, waktu, topik bahasan, jumlah absen, dan kondisi kelas) langsung ke dalam File Monitoring yang telah disediakan oleh koordinator. Jadikan file ini sebagai laporan utama yang selalu terupdate sambil menunggu instruksi lebih lanjut terkait sistem Binusmaya.",
     },
     {
       id: "leader-5",
@@ -82,21 +82,21 @@ const FAQ_DATA: Record<"freshman" | "leader" | "partner", FaqItem[]> = {
     },
     {
       id: "leader-7",
-      question: "Bagaimana mendampingi freshmen dengan kebutuhan khusus atau disabilitas (tunarungu)?",
+      question: "Bagaimana cara mendampingi freshmen dengan kebutuhan khusus atau disabilitas (misal: tunarungu) agar tidak merasa tertinggal?",
       answer:
-        "Lakukan pendekatan personal yang empati, gunakan media visual atau komunikasi tertulis (kertas/notes) untuk menyampaikan materi orientasi, dan dampingi mereka secara intensif agar tetap dapat mengikuti rangkaian FYP dengan nyaman.",
+        "Terapkan 'Buddy System'. Dedikasikan satu FP/FL untuk menjadi pendamping khusus bagi freshmen tersebut. Pastikan ia duduk di barisan paling depan agar bisa melihat presentasi. Gunakan komunikasi visual seperti mengetik di notes HP/Tablet atau menggunakan secarik kertas untuk menjelaskan instruksi yang terlewat. Jaga komunikasi tetap empatik, sabar, dan inklusif.",
     },
     {
       id: "leader-8",
-      question: "Bagaimana jika terjadi miskomunikasi terkait rundown kegiatan yang kurang detail?",
+      question: "Langkah apa yang harus diambil jika terjadi miskomunikasi rundown kegiatan atau briefing pagi terlambat (ngaret)?",
       answer:
-        "Diskusikan rundown secara detail saat briefing pagi bersama seluruh tim FL/FP. Jika briefing terlambat (ngaret) dan waktu mepet dengan jam masuk kelas, segera bagi tugas utama terlebih dahulu dan prioritaskan kesiapan kelas sebelum freshmen tiba.",
+        "Terapkan aturan 'Prioritas 5 Menit'. Jika waktu sudah sangat mepet dengan kedatangan freshmen, hentikan perdebatan detail. Segera tentukan 3 peran paling vital saja: Siapa yang membuka kelas, siapa yang menyiapkan absensi, dan siapa yang menyalakan proyektor/materi. Sisa detail rundown yang belum jelas bisa didiskusikan secara dinamis melalui grup chat khusus FL saat kelas sedang berlangsung.",
     },
     {
       id: "leader-9",
-      question: "Apa tindakan pertama jika fasilitas fisik kelas bermasalah (AC panas atau speaker noise)?",
+      question: "Apa tindakan darurat pertama jika fasilitas fisik kelas bermasalah (misal: AC panas, mati lampu, atau speaker noise parah)?",
       answer:
-        "Laporkan segera ke satpam gedung atau operational staff terdekat untuk penanganan AC dan kelistrikan. Jika mic/speaker kelas mati, gunakan saramonic/speaker portable cadangan atau maksimalkan proyeksi suara agar freshmen tetap mendengar materi dengan jelas.",
+        "Pertama, sampaikan permintaan maaf yang kasual kepada freshmen atas ketidaknyamanan tersebut untuk menjaga suasana tetap positif (misal: 'Wah, lagi tes mental nih AC-nya, sabar ya teman-teman'). Kedua, tugaskan satu FL untuk segera melapor ke FYPL. Sementara menunggu perbaikan, kondisikan kelas dengan aktivitas verbal ringan atau ice-breaking sederhana agar freshmen tetap tenang.",
     },
     {
       id: "leader-10",
