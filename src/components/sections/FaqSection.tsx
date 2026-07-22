@@ -222,11 +222,10 @@ export default function FaqSection() {
               <button
                 key={tab.id}
                 onClick={() => handleTabChange(tab.id)}
-                className={`flex-1 px-6 py-3.5 rounded-xl font-display font-bold uppercase text-xs md:text-sm tracking-widest transition-all duration-300 transform ${
-                  isActive
+                className={`flex-1 px-6 py-3.5 rounded-xl font-display font-bold uppercase text-xs md:text-sm tracking-widest transition-all duration-300 transform ${isActive
                     ? `${tab.activeClass} shadow-[0_4px_20px_rgba(0,0,0,0.25)] scale-[1.03] text-white`
                     : "text-white/60 border border-transparent hover:text-white hover:bg-white/5 hover:border-white/5"
-                }`}
+                  }`}
               >
                 {tab.label}
               </button>
@@ -254,9 +253,8 @@ export default function FaqSection() {
                     {item.question}
                   </span>
                   <span
-                    className={`flex-shrink-0 w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white transition-transform duration-300 ${
-                      isOpen ? "rotate-45 bg-pink border-pink" : "hover:border-cyan hover:text-cyan"
-                    }`}
+                    className={`flex-shrink-0 w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white transition-transform duration-300 ${isOpen ? "rotate-45 bg-pink border-pink" : "hover:border-cyan hover:text-cyan"
+                      }`}
                   >
                     +
                   </span>
@@ -264,9 +262,8 @@ export default function FaqSection() {
 
                 <div
                   id={`faq-answer-${item.id}`}
-                  className={`grid transition-all duration-300 ease-in-out ${
-                    isOpen ? "grid-rows-[1fr] opacity-100 py-0 pb-5" : "grid-rows-[0fr] opacity-0"
-                  }`}
+                  className={`grid transition-all duration-300 ease-in-out ${isOpen ? "grid-rows-[1fr] opacity-100 py-0 pb-5" : "grid-rows-[0fr] opacity-0"
+                    }`}
                 >
                   <div className="overflow-hidden px-6">
                     <p className="font-body text-white/75 text-sm md:text-base leading-relaxed pt-2 border-t border-white/5">
@@ -280,5 +277,7 @@ export default function FaqSection() {
         </div>
       </div>
     </section>
+
   );
 }
+
