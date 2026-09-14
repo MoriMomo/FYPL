@@ -104,13 +104,49 @@ const FAQ_DATA: Record<"freshman" | "leader" | "partner", FaqItem[]> = {
       answer:
         "Tentukan rute mobilisasi dengan matang. Satu FL/FP bertindak sebagai penunjuk jalan di depan (lead), sementara yang lain merapikan barisan di tengah dan belakang (sweep). Lakukan koordinasi waktu agar tidak bentrok dengan ABN lain di lorong/tangga.",
     },
+    {
+      id: "leader-11",
+      question: "Mengapa sesi kegiatan (FYP Opening, Briefing, Curriculum, BINUS DNA, NGO Sharing, dll.) tidak muncul di Logbook atau Schedule?",
+      answer:
+        "Sesi tidak muncul umumnya terjadi karena dua hal: pilihan Course Code & Class Code belum disesuaikan dengan jadwal di LMS, atau akun FL belum ter-mapping sebagai instructor pada course tersebut (misalnya pada sesi ABN-04 atau NGO). Pastikan kode kelas yang dipilih sesuai dengan LMS. Jika opsi kelas tampil 'No Option', segera laporkan ke koordinator FYPL untuk perbaikan data mapping instructor.",
+    },
+    {
+      id: "leader-12",
+      question: "Mengapa data Logbook yang sudah diisi berubah/berbeda atau gagal tersimpan saat di-submit?",
+      answer:
+        "Kendala ini terjadi ketika ada penyesuaian kelas di LMS atau ketidaksesuaian Course Code/Class Code. Pastikan kembali Course Code (misal OPN1001, NEXT1004, NEXT1062, dsb.) dan Class Code (seperti OK01, DK01, LB11, dsb.) di sistem sudah tepat sesuai LMS, kemudian isi ulang logbook. Jika kendala masih berlanjut, laporkan ke koordinator FYPL.",
+    },
+    {
+      id: "leader-13",
+      question: "Mengapa ada Freshmen yang tidak dapat di-checklist di Logbook atau status hadirnya berubah menjadi silang setelah submit?",
+      answer:
+        "Meskipun pengecekan logbook dilakukan berbasis pairingan, sistem tetap melakukan validasi session attendance ke LMS. Jika mahasiswa tersebut belum ada jadwal di LMS pada sesi tersebut, logbook tidak bisa otomatis mencentang kehadirannya. Lakukan centang kehadiran secara manual di logbook dan pastikan kelas Freshmen sama dengan kelas yang diajar. Jika mahasiswa belum terdaftar jadwal di LMS, laporkan NIM & nama mahasiswa ke tim IT/Admission.",
+    },
+    {
+      id: "leader-14",
+      question: "Bagaimana jika absensi otomatis sesi (seperti Student Life atau NGO Sharing) mencatat 0 hadir atau hanya tercentang sebagian?",
+      answer:
+        "Anda tidak perlu khawatir jika absensi otomatis tidak langsung merekam seluruh Freshmen. FL/FP dapat mencentang daftar kehadiran Freshmen secara manual pada halaman Logbook. Pastikan kelas Freshmen dan kelas diajar sudah sama, lalu lakukan submit session log kembali.",
+    },
   ],
   partner: [
     {
-      id: "partner-coming-soon",
-      question: "Kapan FAQ untuk Freshman Partner (FP) dirilis?",
+      id: "partner-1",
+      question: "Bagaimana peran Freshman Partner (FP) saat terjadi kendala pengisian Logbook atau sesi yang tidak muncul?",
       answer:
-        "Coming Soon! Rangkaian tanya-jawab lengkap khusus untuk peran Freshman Partner sedang dalam proses penyusunan dan akan segera dirilis dalam waktu dekat. Tetap pantau microsite ini untuk pembaruan selanjutnya!",
+        "Freshman Partner (FP) bertugas mendampingi FL dalam verifikasi absensi dan ketertiban kelas. Jika FL terkendala saat mengakses Logbook Binusmaya (misal sesi belum muncul karena FL belum ter-mapping sebagai instructor), FP dapat membantu mencatat absensi mahasiswa secara manual di File Monitoring dan memastikan data pairingan Freshmen dengan LMS sudah sesuai.",
+    },
+    {
+      id: "partner-2",
+      question: "Apa yang harus dilakukan FP jika ada Freshmen yang jadwal LMS-nya belum muncul sehingga tidak bisa di-checklist?",
+      answer:
+        "FP perlu mencatat data mahasiswa tersebut (NIM, Nama Lengkap, dan Kelas ABN) pada lembar absensi manual. Dampingi mahasiswa agar tetap mengikuti seluruh rangkaian kegiatan sesi dengan tenang, lalu serahkan data tersebut ke FL/Koordinator FYPL untuk diajukan penyesuaian jadwal ke Admission/IT.",
+    },
+    {
+      id: "partner-3",
+      question: "Bagaimana memastikan absensi sesi khusus (seperti NGO Sharing, BINUS DNA, dan Student Life) berjalan lancar?",
+      answer:
+        "Pastikan FP dan FL telah mencocokkan Course Code dan Class Code sesuai penjadwalan LMS sebelum sesi dimulai. Dampingi Freshmen saat melakukan scan/attendance, dan jika hasil submit absensi di logbook berkurang/disilang, bantu FL untuk mencentang kembali kehadiran secara manual.",
     },
   ],
 };
