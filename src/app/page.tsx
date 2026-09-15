@@ -8,6 +8,7 @@ import StatsSection from "@/components/sections/StatsSection";
 import TimelineSection from "@/components/sections/TimelineSection";
 import TeamSection from "@/components/sections/TeamSection";
 import FaqSection from "@/components/sections/FaqSection";
+import ContactSection from "@/components/sections/ContactSection";
 import Footer from "@/components/layout/Footer";
 
 export default function HomePage() {
@@ -21,6 +22,7 @@ export default function HomePage() {
         <TimelineSection />
         <TeamSection />
         <FaqSection />
+        <ContactSection />
       </main>
       <Footer />
     </>

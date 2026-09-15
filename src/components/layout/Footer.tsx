@@ -1,14 +1,7 @@
 import Image from "next/image";
+import { NAV_LINKS } from "@/data/nav";
 
 // FYPL Footer — Server Component — Tailwind v4
-
-const NAV_LINKS = [
-  { label: "HOME", href: "/" },
-  { label: "ABOUT FYP", href: "#about" },
-  { label: "TIMELINE", href: "#timeline" },
-  { label: "TEAM", href: "#team" },
-  { label: "FAQ", href: "#faq" },
-];
 
 export default function Footer() {
   const year = new Date().getFullYear();

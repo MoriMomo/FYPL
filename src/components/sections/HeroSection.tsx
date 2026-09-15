@@ -138,7 +138,7 @@ export default function HeroSection() {
               ABOUT US
             </Link>
             <Link
-              href="#faq"
+              href="#contact"
               className="inline-flex items-center justify-center px-8 py-3 border-2 border-pink text-white font-display font-bold uppercase tracking-widest text-lg hover:bg-pink transition-colors duration-250 w-fit"
             >
               MAU TANYA KAKK

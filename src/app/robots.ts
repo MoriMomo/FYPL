@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
-
-const BASE_URL = "https://fypl-b2030.example.com";
+import { site } from "@/data/site";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -8,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: `${BASE_URL}/sitemap.xml`,
+    sitemap: `${site.url}/sitemap.xml`,
   };
 }

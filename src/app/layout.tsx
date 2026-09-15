@@ -3,6 +3,8 @@ import { Barlow_Condensed, Barlow } from "next/font/google";
 import "./globals.css";
 import SplashScreen from "@/components/SplashScreen";
 import ScrollToTop from "@/components/layout/ScrollToTop";
+import Analytics from "@/components/Analytics";
+import { site } from "@/data/site";
 
 const barlowCondensed = Barlow_Condensed({
   subsets: ["latin"],
@@ -21,37 +23,34 @@ const barlow = Barlow({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://fypl-b2030.example.com"),
+  metadataBase: new URL(site.url),
   title: {
-    default: "FYPL B2030 — Binus University",
-    template: "%s | FYPL B2030",
+    default: site.fullName,
+    template: `%s | ${site.name}`,
   },
-  description:
-    "Final Year Project Lab B2030 — Binus University @Kemanggisan. Every step, every way, OKAYYYY!",
+  description: site.description,
   keywords: ["FYPL", "FYP", "Binus", "Final Year Project", "Kemanggisan"],
-  authors: [{ name: "FYPL B2030 Team" }],
+  authors: [{ name: `${site.name} Team` }],
   openGraph: {
     type: "website",
     locale: "id_ID",
-    siteName: "FYPL B2030",
-    title: "FYPL B2030 — Binus University",
-    description:
-      "Final Year Project Lab B2030 — Binus University @Kemanggisan. Every step, every way, OKAYYYY!",
+    siteName: site.name,
+    title: site.fullName,
+    description: site.description,
     images: [
       {
-        url: "/og-image.png",
+        url: site.ogImage,
         width: 1200,
         height: 630,
-        alt: "FYPL B2030 — Binus University @Kemanggisan",
+        alt: `${site.name} — ${site.campus}`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "FYPL B2030 — Binus University",
-    description:
-      "Final Year Project Lab B2030 — Binus University @Kemanggisan. Every step, every way, OKAYYYY!",
-    images: ["/og-image.png"],
+    title: site.fullName,
+    description: site.description,
+    images: [site.ogImage],
   },
 };
 
@@ -73,6 +72,7 @@ export default function RootLayout({
         <SplashScreen />
         {children}
         <ScrollToTop />
+        <Analytics />
       </body>
     </html>
   );

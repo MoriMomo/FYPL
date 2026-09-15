@@ -3,19 +3,7 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
-
-interface StatItem {
-  id: string;
-  target: number;
-  suffix: string;
-  label: string;
-}
-
-const STATS: StatItem[] = [
-  { id: "freshman", target: 2000, suffix: "+", label: "New Freshman" },
-  { id: "organizations", target: 50, suffix: "+", label: "Organizations to Join" },
-  { id: "mentors", target: 400, suffix: "+", label: "Mentors to Help" },
-];
+import { STATS } from "@/data/stats";
 
 export default function StatsSection() {
   const containerRef = useRef<HTMLElement>(null);

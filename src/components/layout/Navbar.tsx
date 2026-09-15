@@ -6,14 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
-
-const NAV_LINKS = [
-  { label: "HOME", href: "/" },
-  { label: "ABOUT FYP", href: "#about" },
-  { label: "TIMELINE", href: "#timeline" },
-  { label: "TEAM", href: "#team" },
-  { label: "FAQ", href: "#faq" },
-];
+import { NAV_LINKS } from "@/data/nav";
 
 export default function Navbar() {
   const pathname = usePathname();

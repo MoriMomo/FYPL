@@ -5,75 +5,7 @@ import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
 import { useScrollLock } from "@/lib/useScrollLock";
-
-const TEAM_MEMBERS = [
-  {
-    id: "t01",
-    name: "School of Design",
-    image: "/team/SOD.png",
-    accentColor: "#E8185A",
-    description:
-      "Mengembangkan solusi desain yang inovatif dan berpusat pada pengguna untuk proyek FYP.",
-  },
-  {
-    id: "t02",
-    name: "School of Computer Science",
-    image: "/team/SOCS.png",
-    accentColor: "#45C8D8",
-    description:
-      "Membangun sistem dan aplikasi teknis yang menjadi tulang punggung proyek FYP.",
-  },
-  {
-    id: "t03",
-    name: "School of Information Systems",
-    image: "/team/sois.png",
-    accentColor: "#E8185A",
-    description:
-      "Merancang arsitektur informasi dan integrasi sistem untuk mendukung proyek.",
-  },
-  {
-    id: "t04",
-    name: "Faculty of Engineering",
-    image: "/team/teknik.png",
-    accentColor: "#45C8D8",
-    description:
-      "Menerapkan prinsip rekayasa untuk menyelesaikan tantangan teknis proyek FYP.",
-  },
-  {
-    id: "t05",
-    name: "Faculty of Digital Communication & Hotel Management",
-    image: "/team/FCDHT.png",
-    accentColor: "#E8185A",
-    description:
-      "Menghadirkan strategi komunikasi dan pengalaman layanan dalam proyek FYP.",
-  },
-  {
-    id: "t06",
-    name: "Binus Business School",
-    image: "/team/BBS.png",
-    accentColor: "#45C8D8",
-    description:
-      "Menyusun strategi bisnis dan model keberlanjutan untuk proyek FYP.",
-  },
-  {
-    id: "t07",
-    name: "School of Accounting",
-    image: "/team/SOA.png",
-    accentColor: "#E8185A",
-    description:
-      "Mengelola aspek keuangan dan akuntabilitas dalam pelaksanaan proyek FYP.",
-  },
-  {
-    id: "t08",
-    name: "Faculty of Humanity",
-    image: "/team/foh.png",
-    accentColor: "#45C8D8",
-    description:
-      "Membawa perspektif sosial dan humaniora ke dalam pendekatan proyek FYP.",
-  },
-] as const;
-
-type TeamMember = (typeof TEAM_MEMBERS)[number];
+import { TEAM_MEMBERS, type TeamMember } from "@/data/team";
 
 export default function TeamSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -234,6 +166,9 @@ export default function TeamSection() {
         >
           <div
             ref={cardRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="team-modal-title"
             className="relative w-full max-w-180 max-h-[90vh] overflow-y-auto bg-navy-dark border border-white/10 flex flex-col md:flex-row"
           >
             {/* Close button */}
@@ -275,7 +210,10 @@ export default function TeamSection() {
               >
                 FYPL B2030
               </span>
-              <h3 className="font-display font-black uppercase text-2xl md:text-3xl text-white leading-tight mb-4">
+              <h3
+                id="team-modal-title"
+                className="font-display font-black uppercase text-2xl md:text-3xl text-white leading-tight mb-4"
+              >
                 {activeMember.name}
               </h3>
               <p className="font-body text-white/75 text-sm md:text-base leading-relaxed">
