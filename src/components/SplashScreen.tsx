@@ -1,15 +1,34 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { useScrollLock } from "@/lib/useScrollLock";
+
+// Absolute upper bound on how long the splash may cover the page. If the GSAP
+// timeline or font loading never completes for any reason, this forces the
+// splash away so the page is never left permanently scroll-locked.
+const SPLASH_SAFETY_TIMEOUT_MS = 4000;
 
 export default function SplashScreen() {
   const [visible, setVisible] = useState(true);
   const rootRef = useRef<HTMLDivElement>(null);
   const counterRef = useRef<HTMLSpanElement>(null);
   const barRef = useRef<HTMLDivElement>(null);
+
+  // Refcounted scroll lock — coordinates with any other locker (e.g. modals).
+  useScrollLock(visible);
+
+  // Safety net: never let the splash trap the page.
+  useEffect(() => {
+    if (!visible) return;
+    const id = window.setTimeout(() => {
+      setVisible(false);
+      requestAnimationFrame(() => ScrollTrigger.refresh());
+    }, SPLASH_SAFETY_TIMEOUT_MS);
+    return () => window.clearTimeout(id);
+  }, [visible]);
 
   useGSAP(
     () => {
@@ -22,15 +41,11 @@ export default function SplashScreen() {
         return;
       }
 
-      // Lock the page while the splash plays
-      document.documentElement.style.overflow = "hidden";
-
       const counter = { value: 0 };
 
       const tl = gsap.timeline({
         defaults: { ease: "power2.inOut" },
         onComplete: () => {
-          document.documentElement.style.overflow = "";
           setVisible(false);
           // The page couldn't be measured correctly while overflow was
           // locked — force ScrollTrigger to re-measure now that it can.
@@ -75,7 +90,7 @@ export default function SplashScreen() {
     <div
       ref={rootRef}
       aria-hidden="true"
-      className="fixed inset-0 z-[999] overflow-hidden"
+      className="fixed inset-0 z-999 overflow-hidden"
     >
       {/* Color-block curtain panels */}
       <div className="absolute inset-0 flex">
@@ -92,7 +107,7 @@ export default function SplashScreen() {
             alt="FYPL B2030"
             width={200}
             height={80}
-            className="w-[180px] md:w-[220px] h-auto object-contain"
+            className="w-45 md:w-55 h-auto object-contain"
             priority
           />
           <span className="font-body text-white/50 text-xs uppercase tracking-[0.3em] mt-1">
@@ -107,7 +122,7 @@ export default function SplashScreen() {
           >
             000
           </span>
-          <div className="w-[160px] h-[2px] bg-white/15 overflow-hidden">
+          <div className="w-40 h-0.5 bg-white/15 overflow-hidden">
             <div ref={barRef} className="h-full bg-white w-0" />
           </div>
         </div>

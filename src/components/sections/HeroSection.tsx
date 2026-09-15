@@ -12,53 +12,58 @@ export default function HeroSection() {
 
   useGSAP(
     () => {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      const mm = gsap.matchMedia();
 
-      // Stagger entrance for text headline lines
-      tl.from(".hero-line", {
-        y: 60,
-        opacity: 0,
-        duration: 0.9,
-        stagger: 0.15,
-      })
-        .from(
-          ".hero-sub",
-          {
-            y: 20,
-            opacity: 0,
-            duration: 0.6,
-          },
-          "-=0.4"
-        )
-        .from(
-          ".hero-cta",
-          {
-            scale: 0.85,
-            opacity: 0,
-            duration: 0.6,
-            ease: "back.out(1.7)",
-          },
-          "-=0.3"
-        )
-        .from(
-          imageRef.current,
-          {
-            y: 40,
-            opacity: 0,
-            scale: 0.95,
-            duration: 1,
-          },
-          "-=0.7"
-        );
+      // Full motion: entrance timeline + floating illustration.
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-      // Smooth floating animation for hand illustration
-      gsap.to(imageRef.current, {
-        y: "-=16",
-        rotation: 1.5,
-        duration: 3,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.easeInOut",
+        // Stagger entrance for text headline lines
+        tl.from(".hero-line", {
+          y: 60,
+          opacity: 0,
+          duration: 0.9,
+          stagger: 0.15,
+        })
+          .from(
+            ".hero-sub",
+            {
+              y: 20,
+              opacity: 0,
+              duration: 0.6,
+            },
+            "-=0.4"
+          )
+          .from(
+            ".hero-cta",
+            {
+              scale: 0.85,
+              opacity: 0,
+              duration: 0.6,
+              ease: "back.out(1.7)",
+            },
+            "-=0.3"
+          )
+          .from(
+            imageRef.current,
+            {
+              y: 40,
+              opacity: 0,
+              scale: 0.95,
+              duration: 1,
+            },
+            "-=0.7"
+          );
+
+        // Smooth floating animation for hand illustration
+        gsap.to(imageRef.current, {
+          y: "-=16",
+          rotation: 1.5,
+          duration: 3,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.easeInOut",
+        });
       });
     },
     { scope: containerRef }
@@ -68,7 +73,7 @@ export default function HeroSection() {
     <section
       ref={containerRef}
       id="home"
-      className="relative min-h-screen bg-navy flex items-center overflow-hidden pt-[72px]"
+      className="relative min-h-screen bg-navy flex items-center overflow-hidden pt-nav"
       aria-label="Hero"
     >
       {/* Background grid overlay */}
@@ -83,7 +88,7 @@ export default function HeroSection() {
       />
 
       {/* Content */}
-      <div className="w-full max-w-[1200px] mx-auto px-10 flex flex-col md:flex-row items-center justify-between gap-8 py-16 min-h-[calc(100vh-72px)]">
+      <div className="w-full max-w-300 mx-auto px-10 flex flex-col md:flex-row items-center justify-between gap-8 py-16 min-h-[calc(100vh-72px)]">
         {/* Left — Text */}
         <div className="flex-1 flex flex-col gap-6 md:max-w-[55%] text-center md:text-left items-center md:items-start">
           {/* Headline block */}
@@ -130,7 +135,7 @@ export default function HeroSection() {
               href="#about"
               className="inline-flex items-center justify-center px-8 py-3 border-2 border-cyan bg-cyan text-navy font-display font-bold uppercase tracking-widest text-lg hover:bg-transparent hover:text-cyan transition-colors duration-250 w-fit"
             >
-              ABOUT USS
+              ABOUT US
             </Link>
             <Link
               href="#faq"
@@ -143,7 +148,7 @@ export default function HeroSection() {
 
         {/* Right — Illustration */}
         <div className="flex-1 flex items-center justify-center md:max-w-[45%]">
-          <div ref={imageRef} className="w-full max-w-[520px]">
+          <div ref={imageRef} className="w-full max-w-130">
             <Image
               src="/jumbotronHnad.png"
               alt="FYPL OK hand illustration"

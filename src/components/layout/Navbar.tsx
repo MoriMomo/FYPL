@@ -31,13 +31,17 @@ export default function Navbar() {
 
   useGSAP(
     () => {
-      // 1. Initial entrance animation for nav links
-      gsap.from(".nav-link-item", {
-        y: -25,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.08,
-        ease: "power2.out",
+      const mm = gsap.matchMedia();
+
+      // Entrance stagger only for users who allow motion.
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.from(".nav-link-item", {
+          y: -25,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.08,
+          ease: "power2.out",
+        });
       });
 
       // Set initial state for brand logo to be hidden at top
@@ -93,7 +97,7 @@ export default function Navbar() {
     <>
       <nav
         ref={navRef}
-        className="fixed top-0 left-0 right-0 z-50 h-[88px] transition-all duration-300"
+        className="fixed top-0 left-0 right-0 z-50 h-22 transition-all duration-300"
         aria-label="Main navigation"
       >
         {/* Background panel — glassmorphism morphs via GSAP ScrollTrigger */}
@@ -102,7 +106,7 @@ export default function Navbar() {
           className="absolute inset-0 bg-transparent border-b border-transparent transition-all duration-300 pointer-events-none"
         />
 
-        <div className="relative w-full max-w-[1200px] h-full mx-auto px-6 md:px-10 flex items-center justify-center">
+        <div className="relative w-full max-w-300 h-full mx-auto px-6 md:px-10 flex items-center justify-center">
           {/* Brand logo (absolute left) */}
           <div className="absolute left-6 md:left-10">
             <Link
@@ -127,11 +131,11 @@ export default function Navbar() {
               <li key={link.href} className="nav-link-item">
                 <Link
                   href={link.href}
-                  className="relative font-display text-mm font-bold uppercase tracking-widest text-white/100 hover:text-cyan transition-colors duration-200 py-1 group"
+                  className="relative font-display text-sm font-bold uppercase tracking-widest text-white hover:text-cyan transition-colors duration-200 py-1 group"
                 >
                   {link.label}
                   {/* Gradient animated underline indicator */}
-                  <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-pink to-cyan group-hover:w-full transition-all duration-300 ease-out" />
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-linear-to-r from-pink to-cyan group-hover:w-full transition-all duration-300 ease-out" />
                 </Link>
               </li>
             ))}
@@ -140,21 +144,21 @@ export default function Navbar() {
           {/* Mobile toggle (absolute right) */}
           <div className="absolute right-6 md:right-10 md:hidden">
             <button
-              className="flex flex-col gap-[5px] w-10 h-10 items-center justify-center border border-white/30 rounded"
+              className="flex flex-col gap-1.25 w-10 h-10 items-center justify-center border border-white/30 rounded"
               onClick={toggleOpen}
               aria-expanded={open}
               aria-label={open ? "Close menu" : "Open menu"}
             >
               <span
-                className={`block w-[18px] h-0.5 bg-white rounded-full transition-transform duration-250 origin-center ${open ? "translate-y-[7px] rotate-45" : ""
+                className={`block w-4.5 h-0.5 bg-white rounded-full transition-transform duration-250 origin-center ${open ? "translate-y-1.75 rotate-45" : ""
                   }`}
               />
               <span
-                className={`block w-[18px] h-0.5 bg-white rounded-full transition-all duration-250 ${open ? "opacity-0 scale-x-0" : ""
+                className={`block w-4.5 h-0.5 bg-white rounded-full transition-all duration-250 ${open ? "opacity-0 scale-x-0" : ""
                   }`}
               />
               <span
-                className={`block w-[18px] h-0.5 bg-white rounded-full transition-transform duration-250 origin-center ${open ? "-translate-y-[7px] -rotate-45" : ""
+                className={`block w-4.5 h-0.5 bg-white rounded-full transition-transform duration-250 origin-center ${open ? "-translate-y-1.75 -rotate-45" : ""
                   }`}
               />
             </button>
@@ -164,7 +168,7 @@ export default function Navbar() {
 
       {/* Mobile drawer */}
       <div
-        className={`md:hidden fixed top-[72px] left-0 right-0 bg-navy-dark/95 backdrop-blur-lg z-40 flex flex-col gap-2 px-6 py-6 transition-all duration-300 border-b border-white/10 ${open
+        className={`md:hidden fixed top-nav left-0 right-0 bg-navy-dark/95 backdrop-blur-lg z-40 flex flex-col gap-2 px-6 py-6 transition-all duration-300 border-b border-white/10 ${open
           ? "translate-y-0 opacity-100"
           : "-translate-y-full opacity-0 pointer-events-none"
           }`}

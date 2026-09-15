@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
+import { useScrollLock } from "@/lib/useScrollLock";
 
 const TEAM_MEMBERS = [
   {
@@ -82,30 +83,34 @@ export default function TeamSection() {
 
   useGSAP(
     () => {
-      gsap.from(".team-header", {
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-          toggleActions: "play none none reverse",
-        },
-      });
+      const mm = gsap.matchMedia();
 
-      gsap.from(".team-card", {
-        y: 50,
-        opacity: 0,
-        scale: 0.95,
-        duration: 0.6,
-        stagger: 0.08,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".team-grid",
-          start: "top 80%",
-          toggleActions: "play none none reverse",
-        },
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.from(".team-header", {
+          y: 40,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 75%",
+            toggleActions: "play none none reverse",
+          },
+        });
+
+        gsap.from(".team-card", {
+          y: 50,
+          opacity: 0,
+          scale: 0.95,
+          duration: 0.6,
+          stagger: 0.08,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".team-grid",
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        });
       });
     },
     { scope: sectionRef }
@@ -153,18 +158,19 @@ export default function TeamSection() {
     });
   };
 
-  // Lock page scroll + allow Escape to close while overlay is open
+  // Lock page scroll (refcounted, shared with SplashScreen) while overlay open
+  useScrollLock(Boolean(activeMember));
+
+  // Allow Escape to close while overlay is open
   useEffect(() => {
     if (!activeMember) return;
 
-    document.documentElement.style.overflow = "hidden";
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") closeOverlay();
     };
     window.addEventListener("keydown", onKeyDown);
 
     return () => {
-      document.documentElement.style.overflow = "";
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [activeMember]);
@@ -177,7 +183,7 @@ export default function TeamSection() {
       className="bg-[#111827] py-16 relative"
     >
       {/* Header */}
-      <div className="team-header max-w-[1200px] mx-auto px-6 md:px-10 mb-10">
+      <div className="team-header max-w-300 mx-auto px-6 md:px-10 mb-10">
         <p className="font-display text-xs font-semibold uppercase tracking-[0.25em] text-cyan mb-3">
           The People Behind It
         </p>
@@ -190,15 +196,14 @@ export default function TeamSection() {
       </div>
 
       {/* 3-column photo grid */}
-      <div className="team-grid max-w-[1200px] mx-auto px-6 md:px-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div className="team-grid max-w-300 mx-auto px-6 md:px-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {TEAM_MEMBERS.map((member) => (
           <button
             key={member.id}
             type="button"
             onClick={() => setActiveMember(member)}
             aria-label={`Lihat detail ${member.name}`}
-            className="team-card group relative overflow-hidden bg-[#1a1a2e] text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
-            style={{ aspectRatio: "16/9" }}
+            className="team-card group relative overflow-hidden bg-[#1a1a2e] text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50 aspect-video"
           >
             <Image
               src={member.image}
@@ -222,14 +227,14 @@ export default function TeamSection() {
       {activeMember && (
         <div
           ref={overlayRef}
-          className="fixed inset-0 z-[999] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 sm:p-6"
+          className="fixed inset-0 z-999 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 sm:p-6"
           onClick={(e) => {
             if (e.target === e.currentTarget) closeOverlay();
           }}
         >
           <div
             ref={cardRef}
-            className="relative w-full max-w-[720px] max-h-[90vh] overflow-y-auto bg-navy-dark border border-white/10 flex flex-col md:flex-row"
+            className="relative w-full max-w-180 max-h-[90vh] overflow-y-auto bg-navy-dark border border-white/10 flex flex-col md:flex-row"
           >
             {/* Close button */}
             <button

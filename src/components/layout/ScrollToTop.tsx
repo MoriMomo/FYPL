@@ -6,15 +6,21 @@ export default function ScrollToTop() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    let ticking = false;
+
+    const update = () => {
+      setVisible(window.scrollY > 400);
+      ticking = false;
+    };
+
     const onScroll = () => {
-      if (window.scrollY > 400) {
-        setVisible(true);
-      } else {
-        setVisible(false);
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(update);
       }
     };
 
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 

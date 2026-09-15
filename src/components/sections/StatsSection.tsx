@@ -25,24 +25,38 @@ export default function StatsSection() {
       const statElements = containerRef.current?.querySelectorAll<HTMLElement>(".stat-value");
       if (!statElements) return;
 
-      statElements.forEach((el) => {
-        const targetVal = parseFloat(el.getAttribute("data-target") || "0");
-        const suffix = el.getAttribute("data-suffix") || "";
+      const mm = gsap.matchMedia();
 
-        const counterObj = { value: 0 };
+      // Full motion: count up on scroll.
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        statElements.forEach((el) => {
+          const targetVal = parseFloat(el.getAttribute("data-target") || "0");
+          const suffix = el.getAttribute("data-suffix") || "";
 
-        gsap.to(counterObj, {
-          value: targetVal,
-          duration: 2,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
-          },
-          onUpdate: () => {
-            el.textContent = `${Math.floor(counterObj.value).toLocaleString()}${suffix}`;
-          },
+          const counterObj = { value: 0 };
+
+          gsap.to(counterObj, {
+            value: targetVal,
+            duration: 2,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 85%",
+              toggleActions: "play none none reverse",
+            },
+            onUpdate: () => {
+              el.textContent = `${Math.floor(counterObj.value).toLocaleString()}${suffix}`;
+            },
+          });
+        });
+      });
+
+      // Reduced motion: render the final values immediately, no animation.
+      mm.add("(prefers-reduced-motion: reduce)", () => {
+        statElements.forEach((el) => {
+          const targetVal = parseFloat(el.getAttribute("data-target") || "0");
+          const suffix = el.getAttribute("data-suffix") || "";
+          el.textContent = `${targetVal.toLocaleString()}${suffix}`;
         });
       });
     },
@@ -51,7 +65,7 @@ export default function StatsSection() {
 
   return (
     <section ref={containerRef} className="bg-navy-dark py-12 md:py-20 px-6" aria-label="Statistics">
-      <div className="grid grid-cols-1 sm:grid-cols-3 border border-white/10 max-w-[1200px] mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-3 border border-white/10 max-w-300 mx-auto">
         {STATS.map((stat, idx) => (
           <div
             key={stat.id}

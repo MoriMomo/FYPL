@@ -23,7 +23,7 @@ export default function Footer() {
       </div>
 
       {/* Main footer content */}
-      <div className="max-w-[1200px] mx-auto px-10 py-16 flex flex-col md:flex-row justify-between gap-10">
+      <div className="max-w-300 mx-auto px-10 py-16 flex flex-col md:flex-row justify-between gap-10">
         {/* Brand */}
         <div className="flex flex-col gap-4">
           <Image
@@ -31,7 +31,7 @@ export default function Footer() {
             alt="FYPL Logo"
             width={140}
             height={140}
-            className="w-[140px] h-auto object-contain rounded-full bg-white p-1"
+            className="w-35 h-auto object-contain rounded-full bg-white p-1"
           />
           <p className="font-display font-semibold uppercase tracking-widest text-sm text-cyan">
             B2030 · Binus University · @Kemanggisan

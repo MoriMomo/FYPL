@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 
@@ -58,6 +58,7 @@ const TIMELINE_ITEMS = [
 export default function TimelineSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const [reducedMotion, setReducedMotion] = useState(false);
 
   useGSAP(
     () => {
@@ -65,31 +66,44 @@ export default function TimelineSection() {
       const section = sectionRef.current;
       if (!track || !section) return;
 
-      const getScrollDistance = () => track.scrollWidth - section.offsetWidth;
+      const mm = gsap.matchMedia();
 
-      gsap.to(track, {
-        x: () => -getScrollDistance(),
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          pin: true,
-          start: "top 72px",
-          end: () => `+=${getScrollDistance()}`,
-          scrub: true, // 1:1 with scroll position, zero inertia lag
-          invalidateOnRefresh: true,
-          anticipatePin: 1,
-          onLeave: () => gsap.set(track, { x: -getScrollDistance() }),
-          onLeaveBack: () => gsap.set(track, { x: 0 }),
-        },
+      // Reduced motion: no pinning/scrub — the track becomes a normal
+      // horizontally-scrollable strip (see `reducedMotion` class below).
+      mm.add("(prefers-reduced-motion: reduce)", () => {
+        setReducedMotion(true);
       });
 
-      const refresh = () => ScrollTrigger.refresh();
-      window.addEventListener("load", refresh);
-      document.fonts?.ready.then(refresh);
+      // Full motion: pin the section and translate the track with scroll.
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        setReducedMotion(false);
 
-      return () => {
-        window.removeEventListener("load", refresh);
-      };
+        const getScrollDistance = () => track.scrollWidth - section.offsetWidth;
+
+        gsap.to(track, {
+          x: () => -getScrollDistance(),
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            pin: true,
+            start: "top 72px",
+            end: () => `+=${getScrollDistance()}`,
+            scrub: true, // 1:1 with scroll position, zero inertia lag
+            invalidateOnRefresh: true,
+            anticipatePin: 1,
+            onLeave: () => gsap.set(track, { x: -getScrollDistance() }),
+            onLeaveBack: () => gsap.set(track, { x: 0 }),
+          },
+        });
+
+        const refresh = () => ScrollTrigger.refresh();
+        window.addEventListener("load", refresh);
+        document.fonts?.ready.then(refresh);
+
+        return () => {
+          window.removeEventListener("load", refresh);
+        };
+      });
     },
     { scope: sectionRef }
   );
@@ -99,7 +113,7 @@ export default function TimelineSection() {
       ref={sectionRef}
       id="timeline"
       aria-label="FYP Timeline"
-      className="bg-navy overflow-hidden"
+      className={`bg-navy ${reducedMotion ? "overflow-x-auto" : "overflow-hidden"}`}
     >
       {/* Horizontal scroll track — wider than the viewport */}
       <div
@@ -107,7 +121,7 @@ export default function TimelineSection() {
         className="flex will-change-transform"
       >
         {/* Header card — always visible as the anchor */}
-        <div className="flex-shrink-0 w-[85vw] max-w-[320px] sm:w-[380px] h-[calc(100vh-72px)] bg-navy-dark flex flex-col justify-end px-6 sm:px-10 py-8 sm:py-12 border-r border-white/10">
+        <div className="shrink-0 w-[85vw] max-w-80 sm:w-95 h-[calc(100vh-72px)] bg-navy-dark flex flex-col justify-end px-6 sm:px-10 py-8 sm:py-12 border-r border-white/10">
           <p className="font-display text-xs font-semibold uppercase tracking-[0.25em] text-cyan mb-4">
             BINUS University · FYPL B2030
           </p>
@@ -118,7 +132,7 @@ export default function TimelineSection() {
             <span className="text-cyan italic">TIME</span><br />
             <span className="text-pink">LINE</span>
           </h2>
-          <p className="font-body text-white/60 text-sm leading-relaxed max-w-[260px]">
+          <p className="font-body text-white/60 text-sm leading-relaxed max-w-65">
             Enam tahapan utama perjalanan First Year Program — scroll ke kanan untuk menjelajahi.
           </p>
           {/* Scroll hint arrow */}
@@ -134,7 +148,7 @@ export default function TimelineSection() {
         {TIMELINE_ITEMS.map((item, index) => (
           <article
             key={item.id}
-            className={`${item.color} flex-shrink-0 w-[85vw] max-w-[420px] sm:w-[480px] h-[calc(100vh-72px)] flex flex-col justify-between px-6 sm:px-10 py-8 sm:py-12 border-r border-white/10 relative overflow-hidden`}
+            className={`${item.color} shrink-0 w-[85vw] max-w-105 sm:w-120 h-[calc(100vh-72px)] flex flex-col justify-between px-6 sm:px-10 py-8 sm:py-12 border-r border-white/10 relative overflow-hidden`}
           >
             {/* Stage index indicator top-right */}
             <div className="flex justify-between items-start">
@@ -157,7 +171,7 @@ export default function TimelineSection() {
               <h3 className="font-display font-black uppercase tracking-widest text-white text-xl md:text-2xl leading-tight">
                 {item.label}
               </h3>
-              <p className="font-body text-white/85 text-base leading-relaxed max-w-[340px]">
+              <p className="font-body text-white/85 text-base leading-relaxed max-w-85">
                 {item.description}
               </p>
             </div>

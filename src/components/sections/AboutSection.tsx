@@ -12,31 +12,35 @@ export default function AboutSection() {
 
   useGSAP(
     () => {
-      // Left shattered text image reveal
-      gsap.from(leftPanelRef.current, {
-        x: -80,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-          toggleActions: "play none none reverse",
-        },
-      });
+      const mm = gsap.matchMedia();
 
-      // Right content stagger reveal
-      gsap.from(".about-content-item", {
-        x: 60,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: rightPanelRef.current,
-          start: "top 75%",
-          toggleActions: "play none none reverse",
-        },
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        // Left shattered text image reveal
+        gsap.from(leftPanelRef.current, {
+          x: -80,
+          opacity: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 75%",
+            toggleActions: "play none none reverse",
+          },
+        });
+
+        // Right content stagger reveal
+        gsap.from(".about-content-item", {
+          x: 60,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: rightPanelRef.current,
+            start: "top 75%",
+            toggleActions: "play none none reverse",
+          },
+        });
       });
     },
     { scope: sectionRef }
@@ -50,10 +54,10 @@ export default function AboutSection() {
       aria-labelledby="about-heading"
     >
       {/* 2-column split: left white | right pink */}
-      <div className="flex flex-col md:flex-row min-h-[600px]">
+      <div className="flex flex-col md:flex-row min-h-150">
         {/* Left — White panel with shattered text illustration */}
         <div className="flex-[0_0_58%] bg-white flex items-center justify-center px-10 py-16">
-          <div ref={leftPanelRef} className="w-full max-w-[520px]">
+          <div ref={leftPanelRef} className="w-full max-w-130">
             <Image
               src="/efwiekay.png"
               alt="FYPL Every Way Okayyyy shattered text logo"
@@ -69,7 +73,7 @@ export default function AboutSection() {
           ref={rightPanelRef}
           className="flex-1 bg-pink flex items-center px-10 py-16"
         >
-          <div className="flex flex-col gap-6 max-w-[420px]">
+          <div className="flex flex-col gap-6 max-w-105">
             {/* "ABOUT FYP" heading */}
             <h2
               id="about-heading"
