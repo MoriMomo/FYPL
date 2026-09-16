@@ -19,7 +19,7 @@ export const site = {
   // Contact channels. WhatsApp number in full international format, digits
   // only, no "+" or spaces (e.g. Indonesia: 6281234567890).
   contact: {
-    whatsapp: "6280000000000",
+    whatsapp: "628111040342",
     whatsappMessage:
       "Halo Kak! Saya freshman FYPL B2030 dan ingin bertanya tentang ...",
     email: "fypl.b2030@example.com",

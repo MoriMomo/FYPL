@@ -6,6 +6,7 @@ import HeroSection from "@/components/sections/HeroSection";
 import AboutSection from "@/components/sections/AboutSection";
 import StatsSection from "@/components/sections/StatsSection";
 import TimelineSection from "@/components/sections/TimelineSection";
+import ExcellenceTeaser from "@/components/sections/ExcellenceTeaser";
 import TeamSection from "@/components/sections/TeamSection";
 import FaqSection from "@/components/sections/FaqSection";
 import ContactSection from "@/components/sections/ContactSection";
@@ -20,6 +21,7 @@ export default function HomePage() {
         <AboutSection />
         <StatsSection />
         <TimelineSection />
+        <ExcellenceTeaser />
         <TeamSection />
         <FaqSection />
         <ContactSection />
