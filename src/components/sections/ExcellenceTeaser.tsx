@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
 import { ACTIVITY_TYPES, WEEKS, EXCELLENCE_META } from "@/data/excellence";
+import ExcellenceEssentials from "@/components/sections/ExcellenceEssentials";
 
 // Home-page teaser for the full Excellence Program Journey (/excellence).
 export default function ExcellenceTeaser() {
@@ -79,10 +80,10 @@ export default function ExcellenceTeaser() {
       />
 
       <div className="relative max-w-300 mx-auto px-6 md:px-10 flex flex-col md:flex-row items-center gap-12">
-        {/* Left — copy + CTA */}
+        {/* Left �?" copy + CTA */}
         <div className="flex-1 flex flex-col gap-6 text-center md:text-left items-center md:items-start">
           <p className="xp-teaser-item font-display text-xs font-semibold uppercase tracking-[0.25em] text-cyan">
-            New · Interactive
+            New A� Interactive
           </p>
 
           <h2
@@ -137,7 +138,7 @@ export default function ExcellenceTeaser() {
           </Link>
         </div>
 
-        {/* Right — big badge + week preview chips */}
+        {/* Right �?" big badge + week preview chips */}
         <div className="flex-1 flex flex-col items-center gap-6 w-full">
           <div
             className="xp-teaser-badge flex items-center justify-center w-40 h-40 rounded-full border-4 border-cyan/40"
@@ -171,9 +172,12 @@ export default function ExcellenceTeaser() {
               );
             })}
           </ul>
-          <p className="font-body text-white/40 text-xs">+ 7 more weeks inside →</p>
+          <p className="font-body text-white/40 text-xs">+ 7 more weeks inside �+'</p>
         </div>
       </div>
+
+      {/* Expandable "what you need to know" essentials — unfolds downward */}
+      <ExcellenceEssentials />
     </section>
   );
 }
